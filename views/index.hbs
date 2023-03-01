@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="js/user.js"></script>
+
+<body>
+    {{> header}}
+    <div class="container">
+        <h3 id="userDetail">User Details</h3>
+        {{#if users}}
+        <div id="edit-form" class="box">
+            <h3>Edit User</h3>
+            <div class="edit-form-container">
+                <span style="display:none" id="userId"></span>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input id="name" name="name" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input id="email" name="email" />
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input id="phone" name="phone" />
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea id="address" name="address"></textarea>
+                </div>
+                <div class="form-group update-btn">
+                    <button onclick="USER.update()">Update</button>
+                </div>
+            </div>
+        </div>
+        <table class="table" cellspacing="0" cellspaceing="0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td>{{phone}}</td>
+                    <td>{{address}}</td>
+                    <td>
+                        <button onclick="USER.edit({{json this}})">Edit</button>
+                        <button  onclick="USER.delete({{id}})">Delete</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{else}}
+        <h4 style="background:#e2e2e2; text-align:center; padding:10px">No User Found</h4>
+        {{/if}}
+
+    </div>
+</body>
+
+</html>
